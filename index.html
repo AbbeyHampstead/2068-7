@@ -119,14 +119,16 @@
     <div class="result">
         <p>Choose Your Fighter!</p>
     </div>
+    <div class="result-div-image" >
+        <img src="" id="result-image" width="1000px" class="border">
+    </div>
+
     <div class="choices">
         <div class="choice" id="r"><img width="370" src="Imgs/Rock_Gif.gif" alt="Rock"></div>
         <div class="choice" id="p"> <img width="370" src="Imgs/Paper_Gif.gif" alt="Paper"></div>
         <div class="choice" id="s"><img width="370" src="Imgs/Sissors_Gif.gif" alt="Scissors"></div>
         <div id=b></div>
-         <div class="result-div-image" >
-        <img src="" id="result-image" width="1000px" class="border">
-    </div>
+         
     </div>
     <script>
     let userScore = 0;
@@ -172,17 +174,44 @@
         if (comp == "b") {
             compThing = "Black Hole";
         }
-        compScore++;
-        compScoreElem.innerHTML = compScore;
-        resultElem.innerHTML = compThing + " beats " + userThing + ", You Lose."
-        resultImageElem.src = "imgs/" + user + comp + ".gif";
+        computerScore++;
+        computerScore_span.innerHTML = computerScore;
+        result_div.innerHTML = compThing + " beats " + userThing + ", You Lose."
+        resultImageElem.src = "Imgs/" + user + comp + ".gif";
 
     }
+    function win(user,comp){
+    var userThing;
+    if (user=="r"){
+        userThing="Rock";
+    }
+    if (user=="p"){
+        userThing="Paper";
+    }
+    if (user=="s"){
+        userThing="Scissors";
+    }
+    var compThing;
+    if (comp=="r"){
+        compThing="Rock";
+    }
+    if (comp=="p"){
+        compThing="Paper";
+    }
+    if (comp=="s"){
+        compThing="Scissors";
+    }
+	userScore++;
+	userScore_span.innerHTML=userScore;
+	result_div.innerHTML=userThing+" beats "+compThing+", You Win."
+	resultImageElem.src = "Imgs/"+user+comp+".gif";
+
+}
 
     function tie(user, comp) {
-        resultElem.innerHTML = "tie";
+        result_div.innerHTML = "tie";
 
-        resultImageElem.src = "imgs/" + user + comp + ".png";
+        resultImageElem.src = "Imgs/" + user + comp + ".png";
 
     }
 
@@ -205,12 +234,14 @@
             case "rr":
             case "pp":
             case "ss":
-                draw(userChoice, computerChoice);
+                tie(userChoice, computerChoice);
 
         }
     }
 
-
+    function change_result(a){
+	result_div.innerHTML=a;
+}
     function main() {
         rock_div.addEventListener('click', function() {
             setTimeout(change_result, 500, "Rock");
