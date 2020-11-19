@@ -2,174 +2,238 @@
 <html>
 
 <head>
-	<title>Page Title</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	<header>
+    <title>Page Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <header>
         <h1> Rock Paper Scissors</h1>
     </header>
+    <style>
+    body {
+        background-color: #3F7DC4;
+        margin: 0;
+        padding: 0;
+        /*box-string: border box;*/
+    }
 
-<style>
-	body {background-color: #3F7DC4;
-	margin: 0;
-	padding: 0;
-	box-string: border box:}
+    header {
+        background: white;
+        padding: 10px;
+    }
 
-	header{background: white;
-			padding: 10px;}
-    h1{color: #25272E;
-		text-align: center;
-		font-family: sans-serif;
-		font-size: 60px;}
+    h1 {
+        color: #25272E;
+        text-align: center;
+        font-family: sans-serif;
+        font-size: 60px;
+    }
 
-	.score-board{
-		border: 5px solid white;
-		width: 200px;
-		margin: 40px auto;
-		color: white;
-		font-size: 55px;
-		text-align: center;
-		padding: 15px 20px;
-		font-family: sans-serif;
-		position: relative;
-		font-weight: bold;
-		border-radius: 4%;
-	}
+    .score-board {
+        border: 5px solid white;
+        width: 200px;
+        margin: 40px auto;
+        color: white;
+        font-size: 55px;
+        text-align: center;
+        padding: 15px 20px;
+        font-family: sans-serif;
+        position: relative;
+        font-weight: bold;
+        border-radius: 4%;
+    }
 
-	.badge{
-		font-family: sans-serif;
-		font-weight: bold;
-	}
+    .badge {
+        font-family: sans-serif;
+        font-weight: bold;
+    }
 
-	#user-win {
-		position: absolute;
-		top: -40px;
-		left: -150px;
-	}
-	#user-label {
-		position: absolute;
-		top: 20px;
-		left: -230px;
-	}
+    #user-win {
+        position: absolute;
+        top: -40px;
+        left: -150px;
+    }
 
-	#computer-win {
-		position: absolute;
-		top: -40px;
-		right: -150px;
-	}
-	#computer-label {
-		position: absolute;
-		top: 20px;
-		right: -290px;
-	}
+    #user-label {
+        position: absolute;
+        top: 20px;
+        left: -230px;
+    }
 
-	.result{
-		font-size: 50px;
-		color:white;
-		text-align: center;
-		margin: 60px;
-		font-family: sans-serif
-	}
-	.choice{display: inline-block;
-			border: 8px solid white;
-			border-radius: 20%;
-			margin: 30px;}
-	.choices{
-		text-align:center;
-		margin: 50px 10px;
-	}
-</style>
+    #computer-win {
+        position: absolute;
+        top: -40px;
+        right: -150px;
+    }
+
+    #computer-label {
+        position: absolute;
+        top: 20px;
+        right: -290px;
+    }
+
+    .result {
+        font-size: 50px;
+        color: white;
+        text-align: center;
+        margin: 60px;
+        font-family: sans-serif
+    }
+
+    .choice {
+        display: inline-block;
+        border: 8px solid white;
+        border-radius: 20%;
+        margin: 30px;
+    }
+
+    .choices {
+        text-align: center;
+        margin: 50px 10px;
+    }
+
+    .result {
+        font-size: 50px;
+        color: white;
+        text-align: center;
+        margin: 60px;
+        font-family: sans-serif
+    }
+
+    #result-image {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+    </style>
 </head>
 
 <body>
     <div class="score-board">
         <div id="user-label" class="badge">You</div>
-        <div id="user-win"><img width="170px" src="Player_Win.png" class=Wins></div>
+        <div id="user-win"><img width="170px" src="Imgs/Player_Win.png" class=Wins></div>
         <div id="computer-label" class="badge">Comp.</div>
-        <div id="computer-win"><img width="170px" src="Computer_Win.png" class=Wins></div>
+        <div id="computer-win"><img width="170px" src="Imgs/Computer_Win.png" class=Wins></div>
         <span id="user-score">0</span> vs. <span id="computer-score">0</span>
     </div>
     <div class="result">
         <p>Choose Your Fighter!</p>
     </div>
     <div class="choices">
-        <div class="choice" id="r"><img width="370" src="Rock_Gif.gif" alt="Rock"></div>
-        <div class="choice" id="p"> <img width="370" src="Paper_Gif.gif" alt="Paper"></div>
-        <div class="choice" id="s"><img width="370" src="Sissors_Gif.gif" alt="Scissors"></div>
+        <div class="choice" id="r"><img width="370" src="Imgs/Rock_Gif.gif" alt="Rock"></div>
+        <div class="choice" id="p"> <img width="370" src="Imgs/Paper_Gif.gif" alt="Paper"></div>
+        <div class="choice" id="s"><img width="370" src="Imgs/Sissors_Gif.gif" alt="Scissors"></div>
+        <div id=b></div>
+         <div class="result-div-image" >
+        <img src="" id="result-image" width="1000px" class="border">
     </div>
+    </div>
+    <script>
+    let userScore = 0;
+    let computerScore = 0;
+    const userScore_span = document.getElementById("user-score");
+    const computerScore_span = document.getElementById("computer-score");
+    const scoreBoard_div = document.querySelector(".score-board");
+    const result_div = document.querySelector(".result");
+    const rock_div = document.getElementById("r");
+    const paper_div = document.getElementById("p");
+    const scissors_div = document.getElementById("s");
+    const black_div = document.getElementById("b");
+    const resultImageElem = document.getElementById("result-image");
 
-<script>
-let userScore = 0;
-let computerScore = 0;
-const userScore_span = document.getElementById("user-score");
-const computerScore_span = document.getElementById("computer-score");
-const scoreBoard_div = document.querySelector(".score-board");
-const result_div = document.querySelector(".result");
-const rock_div = document.getElementById("r");
-const paper_div = document.getElementById("p");
-const scissors_div = document.getElementById("s");
+    function getComputerChoice() {
+        const choices = ['r', 'p', 's', 'r', 'p', 's', 'r', 'p', 's', 'r', 'p', 's', 'r', 'p', 's', 'b'];
+        const randomNumber = (Math.floor(Math.random() * 16));
+        return choices[randomNumber];
+    }
+    console.log(getComputerChoice());
 
-function getComputerChoice() {
-    const choices = ['r', 'p', 's'];
-    const randomNumber = (Math.floor(Math.random() * 3));
-    return choices[randomNumber];
-}
-console.log(getComputerChoice());
-
-function win(userChoice, computerChoice) {
-    userScore++;
-    userScore_span.innerHTML = userScore;
-    computerScore_span.innerHTML = computerScore;
-    result_div.innerHTML = userChoice + " beats " + computerChoice + ". You win!";
-}
-
-function lose(userChoice, computerChoice) {
-    computerScore++;
-    computerScore_span.innerHTML = computerScore;
-    userScore_span.innerHTML = userScore;
-}
-
-function draw(userChoice, computerChoice) {
-
-}
-
-function game(userChoice) {
-    const computerChoice = getComputerChoice();
-    switch (userChoice + computerChoice) {
-        case "rs":
-        case "pr":
-        case "sp":
-            win(userChoice, computerChoice);
-            break;
-        case "rp":
-        case "ps":
-        case "sr":
-            lose(userChoice, computerChoice);
-            break;
-        case "rr":
-        case "pp":
-        case "ss":
-            draw(userChoice, computerChoice);
+    function lose(user, comp) {
+        var userThing;
+        if (user == "r") {
+            userThing = "Rock";
+        }
+        if (user == "p") {
+            userThing = "Paper";
+        }
+        if (user == "s") {
+            userThing = "Scissors";
+        }
+        var compThing;
+        if (comp == "r") {
+            compThing = "Rock";
+        }
+        if (comp == "p") {
+            compThing = "Paper";
+        }
+        if (comp == "s") {
+            compThing = "Scissors";
+        }
+        if (comp == "b") {
+            compThing = "Black Hole";
+        }
+        compScore++;
+        compScoreElem.innerHTML = compScore;
+        resultElem.innerHTML = compThing + " beats " + userThing + ", You Lose."
+        resultImageElem.src = "imgs/" + user + comp + ".gif";
 
     }
-}
+
+    function tie(user, comp) {
+        resultElem.innerHTML = "tie";
+
+        resultImageElem.src = "imgs/" + user + comp + ".png";
+
+    }
+
+    function game(userChoice) {
+        const computerChoice = getComputerChoice();
+        switch (userChoice + computerChoice) {
+            case "rs":
+            case "pr":
+            case "sp":
+                win(userChoice, computerChoice);
+                break;
+            case "rp":
+            case "ps":
+            case "sr":
+            case "rb":
+            case "pb":
+            case "sb":
+                lose(userChoice, computerChoice);
+                break;
+            case "rr":
+            case "pp":
+            case "ss":
+                draw(userChoice, computerChoice);
+
+        }
+    }
 
 
-function main() {
-    rock_div.addEventListener('click', function() {
-        game("r");
+    function main() {
+        rock_div.addEventListener('click', function() {
+            setTimeout(change_result, 500, "Rock");
+            setTimeout(change_result, 1000, "Paper");
+            setTimeout(change_result, 1500, "Scissors");
+            setTimeout(game, 2000, "r");
+        })
+        paper_div.addEventListener('click', function() {
+            setTimeout(change_result, 500, "Rock");
+            setTimeout(change_result, 1000, "Paper");
+            setTimeout(change_result, 1500, "Scissors");
+            setTimeout(game, 2000, "p");
+        })
+        scissors_div.addEventListener('click', function() {
+            setTimeout(change_result, 500, "Rock");
+            setTimeout(change_result, 1000, "Paper");
+            setTimeout(change_result, 1500, "Scissors");
+            setTimeout(game, 2000, "s");
+        })
+    }
 
-    })
-    paper_div.addEventListener('click', function() {
-        game("p");
-    })
-    scissors_div.addEventListener('click', function() {
-        game("s");
-    })
-}
-
-main();
-</script>
+    main();
+    </script>
 </body>
+
 </html>
